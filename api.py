@@ -27,6 +27,7 @@ if response.status_code == 200:
             writer.writerow([user["id"], user["name"], user["username"], user["email"]])
 
         writer.writerow([newuser["id"], newuser["name"], newuser["username"], newuser["email"]])
+        #writer.writerow([updated_data["id"], updated_data["name"], updated_data["username"], newuser["email"]])
     print("Data stored in csv")
 else:
     print(f"Error: {response.status_code}")
@@ -36,3 +37,20 @@ else:
 
 print(post) # check status code for response received
 print(post.json()) #print the content
+
+# PUT request - update user data
+url1 = "https://jsonplaceholder.typicode.com/users/1"
+updated_data = {'id':'1', 'name':'Lianne Graham','username':'Bret', 'email':'Sincere@april.biz'}
+put = requests.put(url1, json=updated_data)
+if put.status_code == 200:
+    print("Post updated successfully!")
+else:
+    print(f"Error: {put.status_code}")
+
+# DELETE request
+url2 = "https://jsonplaceholder.typicode.com/users/1"
+delete = requests.delete(url2)
+if delete.status_code == 200:
+    print("Post deleted successfully!")
+else:
+    print(f"Error: {delete.status_code}")
